@@ -24,12 +24,12 @@ pipeline {
         stage('Push Dockerhub') {
             steps {
                 echo 'Push images to Dockerhub...'
-                // sh 'docker tag comingsoon-db mgpearce/comingsoon-db'
-                // sh 'docker tag comingsoon-prod-django mgpearce/comingsoon-prod-django'
-                // sh 'docker tag comingsoon-prod-react mgpearce/comingsoon-prod-react'
-                // sh 'docker push mgpearce/comingsoon-db'
-                // sh 'docker push mgpearce/comingsoon-prod-django'
-                // sh 'docker push mgpearce/comingsoon-prod-react'
+                sh 'docker tag django-on-docker-web mgpearce/django-on-docker-web'
+                sh 'docker tag django-on-docker-nginx mgpearce/django-on-docker-nginx'
+                sh 'docker tag postgres:14.0-alpine mgpearce/django-on-docker-db'
+                sh 'docker push mgpearce/django-on-docker-web'
+                sh 'docker push mgpearce/django-on-docker-nginx'
+                sh 'docker push mgpearce/django-on-docker-db'
             }
         }
     }
