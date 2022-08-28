@@ -5,6 +5,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
+    image: django-on-docker-web
     command: gunicorn hello_django.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
@@ -16,13 +17,14 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:13.0-alpine
+    image: postgres:14.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
   nginx:
     build: ./nginx
+    image: django-on-docker-nginx
     volumes:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
