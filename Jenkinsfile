@@ -26,10 +26,8 @@ pipeline {
                 echo 'Push images to Dockerhub...'
                 sh 'docker tag django-on-docker-web mgpearce/django-on-docker-web'
                 sh 'docker tag django-on-docker-nginx mgpearce/django-on-docker-nginx'
-                sh 'docker tag postgres:14.0-alpine mgpearce/django-on-docker-db'
                 sh 'docker push mgpearce/django-on-docker-web'
                 sh 'docker push mgpearce/django-on-docker-nginx'
-                sh 'docker push mgpearce/django-on-docker-db'
             }
         }
     }
